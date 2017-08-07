@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dFf-xa-D7q">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -50,7 +50,56 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="-129" y="143"/>
+        </scene>
+        <!--Image Detail View Controller-->
+        <scene sceneID="tZf-25-Jyw">
+            <objects>
+                <viewController id="dFf-xa-D7q" customClass="ImageDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dfE-Su-bF2"/>
+                        <viewControllerLayoutGuide type="bottom" id="4ux-aR-clP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6R3-UF-M4n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.5" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="eTo-UZ-DGL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qZ7-uc-4Wz">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="qZ7-uc-4Wz" firstAttribute="leading" secondItem="eTo-UZ-DGL" secondAttribute="leading" id="Lpd-p4-msV"/>
+                                    <constraint firstItem="qZ7-uc-4Wz" firstAttribute="top" secondItem="eTo-UZ-DGL" secondAttribute="top" id="W5D-6a-scL"/>
+                                    <constraint firstAttribute="trailing" secondItem="qZ7-uc-4Wz" secondAttribute="trailing" id="peD-HR-u7b"/>
+                                    <constraint firstAttribute="bottom" secondItem="qZ7-uc-4Wz" secondAttribute="bottom" id="uSm-sq-Vik"/>
+                                    <constraint firstItem="qZ7-uc-4Wz" firstAttribute="centerY" secondItem="eTo-UZ-DGL" secondAttribute="centerY" id="uXA-Q8-Eit"/>
+                                    <constraint firstItem="qZ7-uc-4Wz" firstAttribute="centerX" secondItem="eTo-UZ-DGL" secondAttribute="centerX" id="wCI-pQ-TJ5"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="dFf-xa-D7q" id="3AW-oA-tH5"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eTo-UZ-DGL" firstAttribute="top" secondItem="6R3-UF-M4n" secondAttribute="top" id="e3y-1K-Pnr"/>
+                            <constraint firstItem="eTo-UZ-DGL" firstAttribute="leading" secondItem="6R3-UF-M4n" secondAttribute="leading" id="ohb-79-ZkH"/>
+                            <constraint firstAttribute="trailing" secondItem="eTo-UZ-DGL" secondAttribute="trailing" id="rmj-Bi-uSG"/>
+                            <constraint firstItem="4ux-aR-clP" firstAttribute="top" secondItem="eTo-UZ-DGL" secondAttribute="bottom" id="u5T-Ep-HcC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="qZ7-uc-4Wz" id="Q4L-qe-Egp"/>
+                        <outlet property="scrollView" destination="eTo-UZ-DGL" id="vFb-i2-beN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b1v-0O-raj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="724" y="142.57871064467767"/>
         </scene>
     </scenes>
 </document>
