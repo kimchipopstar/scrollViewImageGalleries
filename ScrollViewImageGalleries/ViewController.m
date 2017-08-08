@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+#import "ImageDetailViewController.h"
 
 @interface ViewController () <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *imageScrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, strong) NSArray<UIImageView*> *imageViews;
 
 
 @end
@@ -20,28 +22,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(scrollViewTapped:)];
+    [self.imageScrollView addGestureRecognizer:tapGesture];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
 
-    NSArray<UIImageView*> *imageViews = @[[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Lighthouse-in-Field"]]
+    self.imageViews = @[[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Lighthouse-in-Field"]]
                                           ,[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Lighthouse-night"]]
                                           ,[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Lighthouse-zoomed"]]];
-    self.pageControl.numberOfPages = imageViews.count;
+    self.pageControl.numberOfPages = self.imageViews.count;
     
     int i = 0;
-    for (UIImageView *imageView in imageViews) {
+    for (UIImageView *imageView in self.imageViews) {
         
         imageView.frame = CGRectMake(self.imageScrollView.frame.size.width * i, 0, self.imageScrollView.frame.size.width, self.imageScrollView.frame.size.height);
         
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         [self.imageScrollView addSubview:imageView];
         
+        
         i++;
         
     }
     
-    self.imageScrollView.contentSize = CGSizeMake(self.imageScrollView.frame.size.width * imageViews.count , self.imageScrollView.frame.size.height);
+    self.imageScrollView.contentSize = CGSizeMake(self.imageScrollView.frame.size.width * self.imageViews.count , self.imageScrollView.frame.size.height);
     
 }
 
@@ -50,6 +56,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([[segue identifier] isEqualToString:@"sagueToDetailView"]) {
+        ImageDetailViewController *targetVC = (ImageDetailViewController*)segue.destinationViewController;
+        targetVC.image = [self.imageViews[self.pageControl.currentPage] image];
+    }
+}
+
+-(void)scrollViewTapped:(UITapGestureRecognizer*)sender{
+    [self performSegueWithIdentifier:@"sagueToDetailView" sender:sender];
+}
+
 
 #pragma mark - Scroll View Delegate
 
